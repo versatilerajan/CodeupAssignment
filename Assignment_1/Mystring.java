@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class MyString {
     // Arrays for number to words conversion (class-level variables - nouns)
-    private static final String[] ones = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-    private static final String[] teens = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+    private static final String[] ONES = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    private static final String[] TEENS = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
                       "sixteen", "seventeen", "eighteen", "nineteen"};
-    private static final String[] tens = {"", "", "twenty", "thirty", "forty", "fifty",
+    private static final String[] TENS = {"", "", "twenty", "thirty", "forty", "fifty",
                       "sixty", "seventy", "eighty", "ninety"};
     
     // Method to validate and get integer input with range checking
@@ -20,22 +20,16 @@ public class MyString {
             try {
                 System.out.print(prompt);
                 String input = scanner.nextLine();
-                
-                // Remove leading and trailing spaces manually
                 input = trimString(input);
-                
-                // Check for empty input
                 if (input.length() == 0) {
                     System.out.println("Error: Empty input! Please enter a number.");
                     continue;
                 }
-                
                 // Check for non-numeric characters (except negative sign at start)
                 if (!isValidNumberString(input)) {
                     System.out.println("Error: Invalid input! Please enter only numbers (no letters, symbols, or spaces).");
                     continue;
                 }
-                
                 number = parseInteger(input);
                 
                 // Handle parsing error
@@ -64,11 +58,9 @@ public class MyString {
         if (input == null || input.length() == 0) {
             return "";
         }
-        
         int start = 0;
         int end = input.length() - 1;
-        
-        // Find first non-space character
+   
         while (start <= end && input.charAt(start) == ' ') {
             start++;
         }
@@ -115,20 +107,14 @@ public class MyString {
             if (character < '0' || character > '9') {
                 return Integer.MIN_VALUE; // Invalid character
             }
-            
             int digit = character - '0';
-            
-            // Check for overflow
             if (result > (Integer.MAX_VALUE - digit) / 10) {
                 return Integer.MIN_VALUE; // Overflow
             }
-            
             result = result * 10 + digit;
-        }
-        
+        }     
         return result * sign;
     }
-    
     // Method to validate if string contains only digits and optional negative sign
     static boolean isValidNumberString(String input) {
         if (input == null || input.length() == 0) {
@@ -160,18 +146,12 @@ public class MyString {
             try {
                 System.out.print(prompt);
                 input = scanner.nextLine();
-                
-                // Trim the input manually
                 input = trimString(input);
-                
-                // Check for empty input if not allowed
                 if (!allowEmpty && input.length() == 0) {
                     System.out.println("Error: Empty input! Please enter a valid string.");
                     continue;
-                }
-                
-                break;
-                
+                }  
+                break;  
             } catch (Exception exception) {
                 System.out.println("Error: Input error! Please try again.");
             }
@@ -226,19 +206,17 @@ public class MyString {
             
             // Handle hundreds
             if (number >= 100) {
-                result = result + ones[number / 100] + " hundred";
+                result = result + ONES[number / 100] + " hundred";
                 number = number % 100;
                 if (number > 0) result = result + " ";
             }
-            
-            // Handle tens and ones
             if (number >= 20) {
-                result = result + tens[number / 10];
+                result = result + TENS[number / 10];
                 if (number % 10 != 0) result = result + " " + ones[number % 10];
             } else if (number >= 10) {
-                result = result + teens[number - 10];
+                result = result + TEENS[number - 10];
             } else if (number > 0) {
-                result = result + ones[number];
+                result = result + ONES[number];
             }
             return result;
             
@@ -313,19 +291,14 @@ public class MyString {
             return "Error: Could not decode string.";
         }
     }
-    
-    // Method to encode string like 'abbbbccc' to 'a1b4c3' (verb name) - Enhanced with error handling
     static String encodeString(String inputString) {
         try {
             if (inputString == null || inputString.length() == 0) {
                 return "Error: Empty or null input string.";
             }
-            
-            // Check if input contains numbers or special characters (invalid for encoding)
             boolean hasNumbers = false;
             boolean hasSpecialChars = false;
             int letterCount = 0;
-            
             for (int index = 0; index < inputString.length(); index++) {
                 char character = inputString.charAt(index);
                 if (isLetter(character)) {
@@ -343,12 +316,10 @@ public class MyString {
             
             if (hasNumbers) {
                 return "Error: Numbers not allowed in encoding input. Use only letters (e.g., aabcccdeee).";
-            }
-            
+            } 
             if (hasSpecialChars) {
                 return "Error: Special characters not allowed in encoding input. Use only letters (e.g., aabcccdeee).";
             }
-            
             String result = "";
             String filteredInput = "";
             
@@ -396,17 +367,14 @@ public class MyString {
             if (number == 2) {
                 return number + " is a prime number. (The only even prime number)";
             }
-            
             if (number % 2 == 0) {
                 return number + " is not a prime number. (Even numbers > 2 are not prime)";
             }
-            
             for (int divisor = 3; divisor * divisor <= number; divisor += 2) {
                 if (number % divisor == 0) {
                     return number + " is not a prime number. (Divisible by " + divisor + ")";
                 }
-            }
-            
+            } 
             return number + " is a prime number.";
             
         } catch (Exception exception) {
@@ -546,4 +514,5 @@ public class MyString {
             System.out.println("Warning: Could not close scanner properly.");
         }
     }
+
 }
