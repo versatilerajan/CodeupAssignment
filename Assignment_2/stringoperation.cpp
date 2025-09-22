@@ -13,7 +13,6 @@ public:
         str=str+x;
         cout<<"Result: "<<str<<endl;
     }
-
     void countWords(){
         int count=0;
         for(int i=0;i<str.length();i++){
@@ -21,7 +20,6 @@ public:
         }
         cout<<"Word count: "<<count+1<<endl;
     }
-
     void replaceWord(){
         string oldStr,newStr;
         cout<<"Enter string to replace: ";
@@ -34,7 +32,6 @@ public:
         }
         cout<<"Result: "<<str<<endl;
     }
-
     void isPalindrome(){
         string temp=str;
         for(int i=0;i<temp.length();i++){
@@ -45,7 +42,6 @@ public:
         if(temp==rev) cout<<str<<" is palindrome"<<endl;
         else cout<<str<<" is not palindrome"<<endl;
     }
-
     void splice(){
         int start,len;
         cout<<"Enter start position: ";
@@ -57,7 +53,6 @@ public:
         }else cout<<"Invalid"<<endl;
         cin.ignore(); // clear buffer
     }
-
     void split(){
         char d;
         cout<<"Enter delimiter: ";
@@ -73,7 +68,6 @@ public:
         cout<<part<<": "<<temp<<endl;
         cin.ignore();
     }
-
     void maxRepeating(){
         int freq[256]={0};
         for(int i=0;i<str.length();i++) freq[(unsigned char)str[i]]++;
@@ -84,7 +78,6 @@ public:
         }
         cout<<"Most repeating: "<<ch<<" ("<<maxC<<" times)"<<endl;
     }
-
     void sortString(){
         string s=str;
         for(int i=0;i<s.length()-1;i++){
@@ -98,7 +91,6 @@ public:
         }
         cout<<"Sorted: "<<s<<endl;
     }
-
     void shift(){
         int k;
         cout<<"Enter shift: ";
@@ -110,17 +102,14 @@ public:
         cout<<"Shifted: "<<shifted<<endl;
         cin.ignore();
     }
-
     void reverseString(){
         string rev="";
         for(int i=str.length()-1;i>=0;i--) rev+=str[i];
         cout<<"Reversed: "<<rev<<endl;
     }
-
     void menu(){
         cout<<"\n 1.Append\n 2.Count Words\n 3.Replace\n 4.Palindrome\n 5.Splice\n 6.Split\n 7.Max Repeating\n 8.Sort\n 9.Shift\n 10.Reverse\n 0.Exit\n";
     }
-
     void run(){
         int ch;
         do{
@@ -141,7 +130,9 @@ public:
                 case 0: cout<<"Exit"<<endl; break;
                 default: cout<<"Invalid"<<endl;
             }
-        }while(ch!=0);
+        }while{
+            (ch!=0);
+        }
     }
 };
 
