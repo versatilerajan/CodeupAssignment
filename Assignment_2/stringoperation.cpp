@@ -55,7 +55,7 @@ public:
     }
     void split(){
         char d;
-        cout<<"Enter delimiter: ";
+        cout<<"Enter separator: ";
         cin>>d;
         string temp="";
         int part=1;
